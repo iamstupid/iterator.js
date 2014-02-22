@@ -7,7 +7,7 @@
 	function pullData() {
 		this.data = {};
 		this.pull = function(name) {
-			return data[name];
+			return this.data[name];
 		}
 	}
 
