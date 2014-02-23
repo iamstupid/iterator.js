@@ -8,4 +8,4 @@ Number.iterator(function(){
     this.yield({n:i});
   }
   return null;
-}
+},"times");
