@@ -18,6 +18,9 @@
 			this.data.data = dup(pairs);
 			return this.fn.call(this.data);
 		}
+		x.hasBlock = function(){
+			return typeof this.fn !== "function";
+		}
 		return x;
 	}
 
@@ -31,7 +34,7 @@
 	window.iterator=function(fn){
 		return iterator(fn);
 	}
-	
+
 	Function.prototype.iterator=function(fn,name){
 		this.prototype[name]=function(args,funct){
 			var a=iterator(fn);
