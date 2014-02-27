@@ -31,6 +31,29 @@
 		}
 	}
 
+	function iter(fn,dt){
+		this.data=new pullData();
+		this.data.data=dup(dt);
+		this.data.end=function(){
+			throw("end");
+		}
+		this.fn=fn;
+		this.next=function(){
+			try{
+				return this.fn.call(this.data);
+			}catch(e){
+				if(e=="end"){
+					throw(new ReferenceError("try to call next on a iterator that is out-of-range"));
+				}else{
+					throw(e);
+				}
+			}
+		}
+		this.restart=function(){
+			this.data.data=dt;
+		}
+	}
+
 	window.iterator=function(fn){
 		return iterator(fn);
 	}
@@ -41,4 +64,6 @@
 			return a.call(this,args,funct);
 		}
 	}
+
+	window.Iterator=iter;
 })();
